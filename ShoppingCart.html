@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fast Food Website</title>
+  <style>
+    body {
+        font-family: sans-serif;
+    }
+
+    .cart-items,
+    .cart-summary {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .cart-items ul li {
+        list-style: none;
+    }
+
+    #cart-list {
+        margin-top: 50px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    #cart-list li {
+        margin-bottom: 5px;
+        font-weight: bold;
+        margin: 10px;
+        border: 1px lightgray solid;
+        border-radius: 10px;
+        padding: 20px;
+        list-style: none;
+    }
+
+    .cart-summary ul li {
+        margin-bottom: 5px;
+    }
+
+    #checkout-button {
+        background-color: #ff5405;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Your Fast Food Restaurant</h1>
+    <nav>
+      </nav>
+  </header>
+  <main>
+    <section id="cart-section">
+      <h2>Your Cart</h2>
+      <ul id="cart-list"></ul>
+      <section class="cart-summary">
+        <h3>Summary</h3>
+        <button id="checkout-button">Checkout</button>
+      </section>
+    </section>
+  </main>
+  <footer>
+    </footer>
+    <script src="practice.js"></script>
+    <script>
+
+   /*     const addToCartButton = document.getElementById("addToCartButton");
+        addToCartButton.addEventListener("click", () => {
+            
+          
+            const foodItem = {
+                item : "Pizza",
+                size : "Size : " + size,
+                flavor:"Flavour : " + flavor,
+                toppings:"Toppings : " + toppings,
+                crust : "Crust : " + crust,
+                price: "Price : " + totalPrice
+            };
+
+            cartItems.push(foodItem);
+            document.getElementById("cart-list").innerHTML = " "
+            for(let add of cartItems){
+                const newListItemSC = document.createElement("li");
+                document.getElementById("cart-list").appendChild(newListItemSC);
+                
+                const listItemText = `
+                    <strong>${add.item}</strong><br>
+                    ${add.size}<br>
+                    ${add.flavor}<br>
+                    ${add.toppings}<br>
+                    ${add.crust}<br>
+                    ${add.price}<br>
+                `;
+        
+                newListItemSC.innerHTML = listItemText;    
+                console.table(cartItems[0]);
+            }
+
+
+        })
+
+
+
+
+       /*  const cartItems = []; // Array to store cart items
+
+        function addToCart(item) {
+            // Add item to cart and update UI
+            cartItems.push(item);
+            updateCart();
+        }
+
+        function updateCart() {
+            // Generate list items for cart items and update price information
+            cartList.innerHTML = ""; // Clear existing items
+
+            let totalPrice = 0;
+            for (const item of cartItems) {
+                const listItem = document.createElement("li");
+                listItem.textContent = `- ${item.name} (${item.quantity})`;
+                cartList.appendChild(listItem);
+
+                totalPrice += item.price * item.quantity;
+            }
+
+            // Update subtotal, tax, and total price
+           const subtotalEl = document.getElementById("subtotal-price");
+            subtotalEl.textContent = `$${totalPrice.toFixed(2)}`;
+
+            // Calculate and display tax based on your rules
+            const taxRate = 0.1; // Example tax rate
+            const taxPrice = totalPrice * taxRate;
+            const taxEl = document.getElementById("tax-price");
+            taxEl.textContent = `$${taxPrice.toFixed(2)}`;
+
+            const totalEl = document.getElementById("total-price");
+            totalEl.textContent = `$${(totalPrice + taxPrice).toFixed(2)}`;
+        }
+        */
+
+        // Implement additional functionality like checkout button and item removal
+
+
+    </script>
+</body>
+
+</html>

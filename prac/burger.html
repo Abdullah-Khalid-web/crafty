@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Builder: Create Your Own Burger</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .Customize-Body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .Customize-Main {
+            padding: 50px;
+            margin-top: 50px;
+        }
+
+        #burger-builder {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 800px) {
+            #burger-builder {
+                display: block;
+                justify-content: space-between;
+            }
+        }
+
+        .image-container {
+            flex: 1;
+            text-align: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .options-container {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .ingredient-section {
+            margin-bottom: 20px;
+        }
+
+        .ingredient-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ingredient-section li {
+            margin-bottom: 5px;
+        }
+
+        .ingredient-section button {
+            display: block;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            cursor: pointer;
+            width: 100%;
+            margin: 5px;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .ingredient-section button:hover {
+            background-color: rgb(255, 84, 5);
+            color: white;
+            transition: 0.3s;
+        }
+
+        .ingredient-section button.active {
+            background-color: #ddd;
+        }
+
+        #cart {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        #cart h3 {
+            margin-bottom: 10px;
+        }
+
+        #cart-items {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #cart-items li {
+            margin-bottom: 5px;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        #cart-total {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #checkout-button {
+            display: block;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body class="Customize-Body">
+    <header>
+        <div class="left">
+            <img src="logo.png" alt="Burger Builder">
+        </div>
+        <div class="right">
+            <nav class="navbar">
+                <a href="#" class="nav-branding"></a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#Home" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#Products" class="nav-link">Products</a></li>
+                    <li class="nav-item"><a href="#About" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#Contact" class="nav-link">ContactUs</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link bx"><Span>SignIn</Span></a></li>
+                    <li class="nav-item"><a href="signup.html" class="nav-link bx"><span>SignUp</span></a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        </nav>
+    </header>
+    <main class="Customize-Main">
+        <section id="burger-builder">
+            <div class="image-container">
+                <img src="burger.jpg" alt="Burger" id="burger-image">
+            </div>
+            <div class="options-container">
+                <h3>Build Your Burger</h3>
+                <div class="ingredient-section">
+                    <h4>Choose Your Ingredients</h4>
+                    <ul>
+                        <li><button onclick="toggleIngredient('cheese')">Cheese</button></li>
+                        <li><button onclick="toggleIngredient('lettuce')">Lettuce</button></li>
+                        <li><button onclick="toggleIngredient('tomato')">Tomato</button></li>
+                        <li><button onclick="toggleIngredient('onion')">Onion</button></li>
+                        <!-- Add more ingredients as needed -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section id="cart">
+            <h3>Your Cart</h3>
+            <ul id="cart-items"></ul>
+            <p id="cart-total">Total: <span id="total-price">0.00</span> Rs</p>
+            <button id="checkout-button">Checkout</button>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo ">
+                <p>&copy; Burger Builder</p>
+                <p>Made By Your Team Name</p>
+            </div>
+            <div class="footer-links">
+                <a href="#Home">Home</a>
+                <a href="#Burger">Burger</a>
+                <a href="#Customize">Customize</a>
+                <a href="#About">About Us</a>
+                <a href="#Contact">Contact</a>
+            </div>
+            <div class="footer-info">
+                <p>Build Your Own Burger</p>
+                <p>Customize your burger to your taste</p>
+                <p>456 Main Street</p>
+                <p>Your City, Country</p>
+                <p>Email: info@burgerbuilder.com</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        let ingredients = [];
+        let totalPrice = 0;
+        const ingredientPrices = {
+            "cheese": 50,
+            "lettuce": 20,
+            "tomato": 30,
+            "onion": 15,
+            // Add more ingredients with their prices as needed
+        };
+
+        function toggleIngredient(ingredient) {
+            const index = ingredients.indexOf(ingredient);
+            if (index === -1) {
+                ingredients.push(ingredient);
+                totalPrice += ingredientPrices[ingredient];
+            } else {
+                ingredients.splice(index, 1);
+                totalPrice -= ingredientPrices[ingredient];
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            document.getElementById("cart-items").innerHTML = "";
+
+            for (const ingredient of ingredients) {
+                const listItem = document.createElement("li");
+                listItem.textContent = capitalizeFirstLetter(ingredient);
+                document.getElementById("cart-items").appendChild(listItem);
+            }
+
+            document.getElementById("total-price").textContent = totalPrice.toFixed(2);
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+    </script>
+</body>
+
+</html>

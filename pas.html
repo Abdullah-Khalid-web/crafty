@@ -1,0 +1,28 @@
+let cartItems = [];
+const addToCartButton = document.getElementById("addToCartButton");
+addToCartButton.addEventListener("click", () => {
+
+    const WholeItems = document.querySelector("#cart-items").textContent;
+    
+    const foodItem = {
+        item : "Pizza",
+        size : "Size : " + size,
+        flavor:"Flavour : " + flavor,
+        toppings:"Toppings : " + toppings,
+        crust : "Crust : " + crust,
+        price: "Price : " + totalPrice
+    };
+
+    cartItems.push(foodItem);
+
+    for(let add of cartItems){
+        console.table(cartItems[0]);
+    }
+    console.log(cartItems[foodItem.size]);
+    const mesOfAtSC = document.getElementById("cart-items")
+    mesOfAtSC.textContent = "";
+    mesOfAtSC.innerHTML = "Item added to Shopping Cart!";
+});
+
+const cartDataDiv = document.getElementById("cartData");
+cartDataDiv.textContent = JSON.stringify(cartItems);

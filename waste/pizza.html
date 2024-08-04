@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Pizza Order</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ff5405;
+      color: #fff;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .section {
+      margin: 20px 0;
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #ff5405;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      color: #fff;
+    }
+
+    #pizza-customization {
+      text-align: center;
+      margin-top: 20px;
+      background-color: #ff5405;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+    }
+
+    #pizza-customization img {
+      width: 350px;
+      height: 300px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    #pizza-customization h2 {
+      color: #fff;
+      font-size: 24px;
+    }
+
+    #pizza-customization label {
+      display: block;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    #pizza-size {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    #customize-button {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    #customize-button:hover {
+      background-color: #555;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    #order-form label {
+      display: block;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    #order-form input[type="text"],
+    #order-form input[type="email"],
+    #order-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      background-color: #fff;
+      color: #333;
+      box-sizing: border-box;
+      max-width: 100%;
+    }
+
+    #order-form button {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    #order-form button:hover {
+      background-color: #555;
+    }
+
+    #recommended-pizza-slider {
+      display: flex;
+      overflow-x: auto;
+      padding: 20px 0;
+    }
+
+    .recommended-pizza-card {
+      flex: 0 0 300px;
+      margin: 10px;
+      background-color: #ff5405;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      color: #fff;
+    }
+
+    .recommended-pizza-card img {
+      width: 100%;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    .recommended-pizza-card h3 {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    .recommended-pizza-card p {
+      font-size: 16px;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Your Pizza Order</h1>
+  </header>
+  <main>
+    <section id="pizza-customization" class="section">
+      <img src="Pizza.jpg" alt="Delicious Pizza">
+      <h2>Customize Your Pizza</h2>
+      <label for="pizza-size">Size:</label>
+      <select id="pizza-size">
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+      </select>
+      <button id="customize-button">Customize</button>
+    </section>
+    <section id="recommended-pizzas" class="section">
+      <h2>Recommended Pizzas</h2>
+      <div id="recommended-pizza-slider">
+        <!-- Recommended Pizza Cards -->
+        <div class="recommended-pizza-card">
+          <img src="pizza.jpg" alt="Pizza 1">
+          <h3>Pizza Option 1</h3>
+          <p>Description of Pizza Option 1.</p>
+        </div>
+        <div class="recommended-pizza-card">
+          <img src="pizza.jpg" alt="Pizza 2">
+          <h3>Pizza Option 2</h3>
+          <p>Description of Pizza Option 2.</p>
+        </div>
+        <div class="recommended-pizza-card">
+          <img src="pizza.jpg" alt="Pizza 3">
+          <h3>Pizza Option 3</h3>
+          <p>Description of Pizza Option 3.</p>
+        </div>
+        <div class="recommended-pizza-card">
+          <img src="pizza.jpg" alt="Pizza 1">
+          <h3>Pizza Option 1</h3>
+          <p>Description of Pizza Option 1.</p>
+        </div>
+        <div class="recommended-pizza-card">
+          <img src="pizza.jpg" alt="Pizza 2">
+          <h3>Pizza Option 2</h3>
+          <p>Description of Pizza Option 2.</p>
+        </div>
+        <div class="recommended-pizza-card">
+          <img src="pizza.jpg" alt="Pizza 3">
+          <h3>Pizza Option 3</h3>
+          <p>Description of Pizza Option 3.</p>
+        </div>
+        <div class="recommended-pizza-card">
+          <img src="pizza.jpg" alt="Pizza 1">
+          <h3>Pizza Option 1</h3>
+          <p>Description of Pizza Option 1.</p>
+        </div>
+        <div class="recommended-pizza-card">
+          <img src="pizza.jpg" alt="Pizza 2">
+          <h3>Pizza Option 2</h3>
+          <p>Description of Pizza Option 2.</p>
+        </div>
+        <div class="recommended-pizza-card">
+          <img src="pizza.jpg" alt="Pizza 3">
+          <h3>Pizza Option 3</h3>
+          <p>Description of Pizza Option 3.</p>
+        </div>
+      </div>
+    </section>
+    <section id="order-summary" class="section">
+      <h2>Order Summary</h2>
+      <p>Selected Pizza: <span id="selected-pizza">Pepperoni Pizza</span></p>
+      <p>Size: <span id="selected-size">Large</span></p>
+      <p>Quantity: <span id="selected-quantity">1</span></p>
+      <p>Total Price: $<span id="total-price">12.99</span></p>
+    </section>
+    <section id="customer-details" class="section">
+      <h2>Customer Information</h2>
+      <form id="order-form">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="address">Delivery Address:</label>
+          <textarea id="address" name="address" required></textarea>
+        </div>
+        <button type="submit">Place Order</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 Your Pizza Shop</p>
+  </footer>
+</body>
+
+</html>
