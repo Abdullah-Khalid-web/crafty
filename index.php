@@ -1,68 +1,4 @@
-<?php
-session_start(); // Start the session to access session variables
-
-// Check if session variables exist
-if (isset($_SESSION['fname']) && isset($_SESSION['lname']))
-{
-    $fname = $_SESSION['fname'];
-    $lname = $_SESSION['lname'];
-    // Display the user information
-}
-else
-{
-
-}
-?>
-
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crafty Crusts</title>
-    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-    <header>
-        <div class="left">
-            <img src="logo.png" alt="Crafty Crusts">
-        </div>
-        <div class="right">
-            <nav class="navbar">
-                <a href="#" class="nav-branding"></a>
-                <ul class="nav-menu">
-                    <li class="nav-item"><a href="#Home" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="#Products" class="nav-link">Products</a></li>
-                    <li class="nav-item"><a href="#About" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#Contact" class="nav-link">ContactUs</a></li>
-                <li class="nav-item"><a href="login.php" class="nav-link bx"><span>SignIn</span></a></li>
-                <li class="nav-item"><a href="signup.php" class="nav-link bx"><span>SignUp</span></a></li>
-                    <li class="nav-item"><a href="ShoppingCart.html" class="nav-link bx"><span>ShoppingCart</span></a></li>
-                    <?php if (isset($_SESSION['fname']) && isset($_SESSION['lname'])): ?>
-                             <li><?php echo $_SESSION['fname'] . ' ' . $_SESSION['lname']; ?></li>
-                    <?php endif; ?>
-                    <?php if (isset($_SESSION['fname']) && isset($_SESSION['lname'])): ?>
-            <form action="logout.php" method="post">
-                <input  type="submit" class="nav-link bx" value="Logout">
-            </form>
-        <?php endif; ?>
-                </ul>
-        </div>
-        <div class="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-        </nav>
-    </header>
+<?php include 'header.php' ?>
     <main>
         <section id="Home">
             <div class="section1">
@@ -71,23 +7,23 @@ else
             </div>
         </section>
         <section id="Products" class="boxes Products">
-            <a href="pizza1.html">
+            <a href="pizza1.php">
                 <div class="box ZoomIn">
-                    <img class="" src="pizza.jpg" alt="Image 1">
+                    <img class="" src="images/pizza.jpg" alt="Image 1">
                     <h2>Pizza</h2>
                     <p>Click Here For Order And Customize. According to Yours taste</p>
                 </div>
             </a>
             <a href="#">
                 <div class="box ZoomIn">
-                    <img src="burger.jpg" alt="Image 2">
+                    <img src="images/burger.jpg" alt="Image 2">
                     <h2>Burger</h2>
                     <p>Click Here For Order And Customize. According to Yours taste</p>
                 </div>
             </a>
             <a href="#">
                 <div class="box ZoomIn">
-                    <img src="Fries.jpg" alt="Image 3">
+                    <img src="images/Fries.jpg" alt="Image 3">
                     <h2>Fries</h2>
                     <p>Click Here For Order And Customize. According to Yours taste</p>
                 </div>
@@ -96,7 +32,7 @@ else
             <a href="#">
 
                 <div class="box ZoomIn">
-                    <img src="Sandwich.jpg" alt="Image 4">
+                    <img src="images/Sandwich.jpg" alt="Image 4">
                     <h2>Sandwich</h2>
                     <p>Click Here For Order And Customize. According to Yours taste</p>
                 </div>
@@ -105,7 +41,7 @@ else
             <a href="#">
 
                 <div class="box ZoomIn">
-                    <img src="Shawarma.jpg" alt="Image 5">
+                    <img src="images/Shawarma.jpg" alt="Image 5">
                     <h2>Shawarma</h2>
                     <p>Click Here For Order And Customize. According to Yours taste</p>
                 </div>
@@ -114,7 +50,7 @@ else
             <a href="#">
 
                 <div class="box ZoomIn">
-                    <img src="Chicken.jpg" alt="Image 6">
+                    <img src="images/Chicken.jpg" alt="Image 6">
                     <h2>Chicken</h2>
                     <p>Click Here For Order And Customize. According to Yours taste</p>
                 </div>
@@ -151,29 +87,39 @@ else
 
 
     </main>
-    <footer>
-        <div class="footer-content">
-          <div class="footer-logo ">
-            <p>&copy; Crafty Crusts</p>
-            <p>Made By SE Mafia</p>
-          </div>
-          <div class="footer-links">
-            <a href="#Home">Home</a>
-            <a href="#Pizza">Pizza</a>
-            <a href="#Customize">Customize</a>
-            <a href="#About">About Us</a>
-            <a href="#Contact">Contact</a>
-          </div>
-          <div class="footer-info">
-            <p>Order Fast Food</p>
-            <p>Customize your food to your flavor</p>
-            <p>123 Main Street</p>
-            <p>Your City, Country</p>
-            <p>Email: info@craftycrusts.com</p>
-          </div>
-        </div>
-      </footer>
 
+    <?php
+        $select_brands = "Select * from `brands`";
+        $result_brand = mysqli_query($con, $select_brands);
+        
+       ;
+        while( $row_data = mysqli_fetch_assoc($result_brand)){
+            $brand_title = $row_data['brands_title'] ;
+            $brand_id = $row_data['brands_id'] ;
+            echo "<li class='nav-item'> 
+                <a href='index.php?brand=$brand_id' class='nav-link text-dark'>
+                    $brand_title
+                </a>
+            </li>";
+        }
+    ?>
+    <?php
+        $select_categories = "Select * from `categories`";
+        $result_categories = mysqli_query($con, $select_categories);
+        
+       ;
+        while( $row_data = mysqli_fetch_assoc($result_categories)){
+            $categories_title = $row_data['category_title'] ;
+            $categories_id = $row_data['category_id'] ;
+            echo "<li class='nav-item'> 
+                <a href='index.php?categories=$categories_id' class='nav-link text-dark'>
+                    $categories_title
+                </a>
+            </li>";
+        }
+    ?>
+
+    <?php include 'footer.php' ?>
 
 
     <!-- hamburger -->
