@@ -55,20 +55,28 @@
     </div>
 
     <!-- Third Section -->
-    <div class="row">
+    <div >
         <div class="col-md-12 bg-secondary p-1 d-flex align-item-center ">
             <div class="p-3">
                 <a href="#"><img class="admin-image" src="../cat-8198720_640.webp" alt=""></a>
                 <p class="text-light text-center">Admin Name</p>
             </div>
             <div class="button text-center">
-                <button class=" my-3"><a href="insert_product.php" class="nav-link text-light bg-info my-1">Insert Product</a></button>
+                <button class=" my-3"><a href="index.php?insert_product" class="nav-link text-light bg-info my-1">Insert Product</a></button>
                 <button><a href="#" class="nav-link text-light bg-info my-1">View Product</a></button>
-                <button><a href="index.php?insert-category" class="nav-link text-light bg-info my-1">Insert
-                        Category</a></button>
-                <button><a href="#" class="nav-link text-light bg-info my-1">View Category</a></button>
-                <button><a href="index.php?insert-brand" class="nav-link text-light bg-info my-1">Insert Brand</a></button>
-                <button><a href="#" class="nav-link text-light bg-info my-1">View Brand</a></button>
+                
+                <button><a href="index.php?insert-flavour" class="nav-link text-light bg-info my-1">Insert Flavour</a></button>
+                <button><a href="#" class="nav-link text-light bg-info my-1">View Flavour</a></button>
+                
+                <button><a href="index.php?insert-size" class="nav-link text-light bg-info my-1">Inserts Size</a></button>
+                <button><a href="#" class="nav-link text-light bg-info my-1">View Size</a></button>
+                
+                <button><a href="index.php?insert_topping" class="nav-link text-light bg-info my-1">Inserts topping</a></button>
+                <button><a href="#" class="nav-link text-light bg-info my-1">View topping</a></button>
+                
+                <button><a href="index.php?insert_crust" class="nav-link text-light bg-info my-1">Inserts crust</a></button>
+                <button><a href="#" class="nav-link text-light bg-info my-1">View crust</a></button>
+                
                 <button><a href="#" class="nav-link text-light bg-info my-1">All orders</a></button>
                 <button><a href="#" class="nav-link text-light bg-info my-1">All Payment</a></button>
                 <button><a href="#" class="nav-link text-light bg-info my-1">List User</a></button>
@@ -83,12 +91,24 @@
     <!-- Fourth Child -->
     <div class="container my-5">
         <?php
-        if (isset($_GET['insert-category'])) {
-            include 'insert-category.php';
+        if (isset($_GET['insert_product'])){
+            include 'insert_product.php';
+        
         }
-        else if (isset($_GET['insert-brand'])){
-            include 'insert-brand.php';
-      
+        if (isset($_GET['insert-flavour'])) {
+            include 'insert_flavour.php';
+        }
+        if (isset($_GET['insert-size'])){
+            include 'insert-size.php';
+            
+        }
+        if (isset($_GET['insert_topping'])){
+            include 'insert-topping.php';
+        
+        }
+        if (isset($_GET['insert_crust'])){
+            include 'insert_crust.php';
+        
         }
             ?>
     </div>
