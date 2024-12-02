@@ -1,6 +1,5 @@
 <?php
 include '../includes/connect.php';
-
 if (isset($_POST['insert_product'])) {
     $product_title = $_POST['product-title'];
     $product_description = $_POST['Description'];
@@ -8,42 +7,33 @@ if (isset($_POST['insert_product'])) {
     $product_Image = $_FILES['Image']['name'];
     $temp_Image = $_FILES['Image']['tmp_name'];
 
-
-    if (empty($product_title) || empty($product_description)  || empty($product_Image)) {
-        echo "<script>alert ('Please fill all the fields') </script>";
+    if (empty($product_title) || empty($product_description) || empty($product_Image)) {
+        echo "<script>alert('Please fill all the fields')</script>";
     } else {
-        // Move uploaded files
-        move_uploaded_file($temp_Image, "./product_images/$product_Image");
+        // Check if product title already exists
+        $check_product_query = "SELECT * FROM `products` WHERE product_title = '$product_title'";
+        $result = mysqli_query($con, $check_product_query);
 
+        if (mysqli_num_rows($result) > 0) {
+            echo "<script>alert('Product title already exists. Please choose a different name.')</script>";
+        } else {
+            // Move uploaded files
+            move_uploaded_file($temp_Image, "./product_images/$product_Image");
 
-        // Insert query for products
-        $insert_product = "INSERT INTO `products` (product_title, product_description, product_image, product_status) 
-VALUES ('$product_title', '$product_description', '$product_Image', '$product_status')";
+            // Insert query for products
+            $insert_product = "INSERT INTO `products` (product_title, product_description, product_image, product_status) 
+                            VALUES ('$product_title', '$product_description', '$product_Image', '$product_status')";
 
-        // $insert_product = "INSERT INTO `products` (product_title, product_description, product_image ) VALUES ('$product_title', '$product_description','$product_Image',`NOW()`,'$product_status')";
-        
-        mysqli_query($con, $insert_product);
-        $product_id = mysqli_insert_id($con);
-        
-
-        // $test_query = "INSERT INTO `products` (product_title, product_description, product_image, created_at, product_status) 
-        // VALUES ('Test Product', 'This is a test description', 'test.jpg', NOW(), 'true')";
-
-        if (!mysqli_query($con, $insert_product)) {
-            die("Error in test query: " . mysqli_error($con));
+            // Execute the query and check for errors
+            if (mysqli_query($con, $insert_product)) {
+                echo "<script>alert('Product has been inserted successfully')</script>";
+            } else {
+                die("Error inserting product: " . mysqli_error($con));
+            }
         }
-        else{
-            echo "<script>alert('Product has been inserted successfully')</script>";
-
-        }
-
-
-
-
-        
-
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

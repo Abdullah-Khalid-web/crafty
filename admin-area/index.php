@@ -63,24 +63,25 @@
             </div>
             <div class="button text-center">
                 <button class=" my-3"><a href="index.php?insert_product" class="nav-link text-light bg-info my-1">Insert Product</a></button>
-                <button><a href="#" class="nav-link text-light bg-info my-1">View Product</a></button>
+                <button><a href="index.php?view_product" class="nav-link text-light bg-info my-1">View Product</a></button>
                 
                 <button><a href="index.php?insert-flavour" class="nav-link text-light bg-info my-1">Insert Flavour</a></button>
-                <button><a href="#" class="nav-link text-light bg-info my-1">View Flavour</a></button>
+                <button><a href="index.php?view_flavour" class="nav-link text-light bg-info my-1">View Flavour</a></button>
                 
                 <button><a href="index.php?insert-size" class="nav-link text-light bg-info my-1">Inserts Size</a></button>
-                <button><a href="#" class="nav-link text-light bg-info my-1">View Size</a></button>
+                <button><a href="index.php?view_size" class="nav-link text-light bg-info my-1">View Size</a></button>
                 
                 <button><a href="index.php?insert_topping" class="nav-link text-light bg-info my-1">Inserts topping</a></button>
-                <button><a href="#" class="nav-link text-light bg-info my-1">View topping</a></button>
+                <button><a href="index.php?view_topping" class="nav-link text-light bg-info my-1">View topping</a></button>
                 
                 <button><a href="index.php?insert_crust" class="nav-link text-light bg-info my-1">Inserts crust</a></button>
-                <button><a href="#" class="nav-link text-light bg-info my-1">View crust</a></button>
+                <button><a href="index.php?view_crust" class="nav-link text-light bg-info my-1">View crust</a></button>
                 
-                <button><a href="#" class="nav-link text-light bg-info my-1">All orders</a></button>
+                <button><a href="index.php?view_order" class="nav-link text-light bg-info my-1">All orders</a></button>
+
                 <button><a href="#" class="nav-link text-light bg-info my-1">All Payment</a></button>
-                <button><a href="#" class="nav-link text-light bg-info my-1">List User</a></button>
-                <button><a href="#" class="nav-link text-light bg-info my-1">Logout</a></button>
+                <button><a href="index.php?view_user" class="nav-link text-light bg-info my-1">List User</a></button>
+                <button><a href="../logout.php" class="nav-link text-light bg-info my-1">Logout</a></button>
             </div>
         </div>
     </div>
@@ -108,6 +109,34 @@
         }
         if (isset($_GET['insert_crust'])){
             include 'insert_crust.php';
+        
+        }
+        if (isset($_GET['view_order'])){
+            include 'view_order.php';
+        
+        }
+        if (isset($_GET['view_product'])){
+            include 'view_product.php';
+        
+        }
+        if (isset($_GET['view_flavour'])){
+            include 'view_flavour.php';
+        
+        }
+        if (isset($_GET['view_crust'])){
+            include 'view_crust.php';
+        
+        }
+        if (isset($_GET['view_size'])){
+            include 'view_size.php';
+        
+        }
+        if (isset($_GET['view_topping'])){
+            include 'view_topping.php';
+        
+        }
+        if (isset($_GET['view_user'])){
+            include 'view_user.php';
         
         }
             ?>

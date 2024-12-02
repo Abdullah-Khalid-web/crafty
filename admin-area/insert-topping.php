@@ -5,7 +5,7 @@ if (isset($_POST['insert-topping'])) {
     $topping_product_name = $_POST['topping_product_name'];
     $topping_price = $_POST['topping_price'];
     // select data from database
-    $select_query = "Select * from `topping` where topping_name	 = '$topping_name'";
+    $select_query = "Select * from `topping` where topping_name	 = '$topping_name' OR topping_product_name = '$topping_product_name' ";
     $result_select = mysqli_query($con, $select_query);
     $number = mysqli_num_rows($result_select);
 

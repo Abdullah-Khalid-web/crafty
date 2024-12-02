@@ -4,10 +4,9 @@
     <section id="pizza-builder">
 
         <?php
-        if(isset($_SESSION['id'])){
-            $user_id  = $_SESSION['id'];
-        }
-        else{
+        if (isset($_SESSION['id'])) {
+            $user_id = $_SESSION['id'];
+        } else {
 
         }
         $product_id = $_GET['product_id'];
@@ -26,9 +25,9 @@
 
         <div class="options-container">
             <h3>Build Your Masterpiece</h3>';
-      
+        
 
-// <!-- Sizes -->
+        // <!-- Sizes -->
         $sqlsize = "SELECT * FROM `size` WHERE size_product_name = '$product_title'";
         $resultsize = mysqli_query($con, $sqlsize);
         if(mysqli_num_rows($resultsize) > 0)
@@ -91,26 +90,36 @@
                     </select>
                 </div>';
         }
+
+
+        // Topping
+
+        $sqltopping = "SELECT * FROM `topping` WHERE topping_product_name = '$product_title'";
+        $resulttopping = mysqli_query($con, $sqltopping);
+
+        if (mysqli_num_rows($resulttopping) > 0) {
+            echo '
+                <div class="size-section">
+                    <h4>Toppings</h4>
+                    <ul id="topping-list">
+                ';
+            while ($row = mysqli_fetch_assoc($resulttopping)) {
+                echo '
+                    <li>
+                        <label>
+                            <input type="checkbox" class="topping-checkbox" data-price="' . htmlspecialchars($row['topping_price']) . '">
+                            ' . htmlspecialchars($row['topping_name']) . ' - ' . htmlspecialchars($row['topping_price']) . ' Rs
+                        </label>
+                    </li>
+                ';
+            }
+
+            echo '
+                </ul>
+            </div>
+            ';
+        }
         ?>
-        <!-- Toppings -->
-        <div class="size-section">
-            <h4>Toppings</h4>
-            <ul id="topping-list" onchange="updateCartDetails()">
-                <?php
-                $sqltopping = "SELECT * FROM `topping` WHERE topping_product_name = '$product_title'";
-                $resulttopping = mysqli_query($con, $sqltopping);
-                while ($row = mysqli_fetch_assoc($resulttopping)) {
-                    echo '
-            <li>
-                <label>
-                    <input  type="checkbox" class="topping-checkbox" data-price="' . htmlspecialchars($row['topping_price']) . '">
-                    ' . htmlspecialchars($row['topping_name']) . ' - ' . htmlspecialchars($row['topping_price']) . ' Rs
-                </label>
-            </li>';
-                }
-                ?>
-            </ul>
-        </div>
 
     </section>
 
@@ -129,28 +138,28 @@
 
         <button id="addToCartButton">
             <?php
-            echo'
+            echo '
             <a href="addToCart.php">
 
             ';
-                ?>
-                <div class="default-btn">
-                    <svg class="css-i6dzq1" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-width="2"
-                        stroke="#FFF" height="20" width="20" viewBox="0 0 24 24">
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                        <circle r="3" cy="12" cx="12"></circle>
-                    </svg>
-                    <span>Add to Cart</span>
-                </div>
-                <div class="hover-btn">
-                    <svg class="css-i6dzq1" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-width="2"
-                        stroke="#ffd300" height="20" width="20" viewBox="0 0 24 24">
-                        <circle r="1" cy="21" cx="9"></circle>
-                        <circle r="1" cy="21" cx="20"></circle>
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                    </svg>
-                    <span>Add to Cart</span>
-                </div>
+            ?>
+            <div class="default-btn">
+                <svg class="css-i6dzq1" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-width="2"
+                    stroke="#FFF" height="20" width="20" viewBox="0 0 24 24">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle r="3" cy="12" cx="12"></circle>
+                </svg>
+                <span>Add to Cart</span>
+            </div>
+            <div class="hover-btn">
+                <svg class="css-i6dzq1" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-width="2"
+                    stroke="#ffd300" height="20" width="20" viewBox="0 0 24 24">
+                    <circle r="1" cy="21" cx="9"></circle>
+                    <circle r="1" cy="21" cx="20"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span>Add to Cart</span>
+            </div>
             </a>
         </button>
 
@@ -166,114 +175,57 @@
 
 
     <!-- Add to cart button url -->
-    <script>
-        document.getElementById('addToCartButton').addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent the default link behavior
 
-    const sizeSelect = document.getElementById('size-select');
-    const flavourSelect = document.getElementById('flavour-select');
-    const crustSelect = document.getElementById('crust-select');
-    const toppingCheckboxes = document.querySelectorAll('.topping-checkbox');
-    const quantityInput = document.getElementById("input-item-quantity");
+    <script>document.getElementById('addToCartButton').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default link behavior
 
-    // Get selected values
-    const selectedSize = sizeSelect.options[sizeSelect.selectedIndex];
-    const selectedFlavour = flavourSelect.options[flavourSelect.selectedIndex];
-    const selectedCrust = crustSelect.options[crustSelect.selectedIndex];
-    const selectedToppings = [];
-    let toppingTotal = 0;
+            const sizeSelect = document.getElementById('size-select');
+            const flavourSelect = document.getElementById('flavour-select');
+            const crustSelect = document.getElementById('crust-select');
+            const toppingCheckboxes = document.querySelectorAll('.topping-checkbox');
+            const quantityInput = document.getElementById("input-item-quantity");
 
-    toppingCheckboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-            const toppingName = checkbox.parentNode.textContent.trim().split(" - ")[0];
-            selectedToppings.push(toppingName);
-            toppingTotal += parseFloat(checkbox.dataset.price);
-        }
-    });
+            // Get selected values
+            const selectedSize = sizeSelect.options[sizeSelect.selectedIndex];
+            const selectedFlavour = flavourSelect.options[flavourSelect.selectedIndex];
+            const selectedCrust = crustSelect.options[crustSelect.selectedIndex];
+            const selectedToppings = [];
+            let toppingTotal = 0;
 
-    const quantity = parseInt(quantityInput.value, 10);
+            toppingCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    const toppingName = checkbox.parentNode.textContent.trim().split(" - ")[0];
+                    selectedToppings.push(toppingName);
+                    toppingTotal += parseFloat(checkbox.dataset.price);
+                }
+            });
 
-    // Calculate total price
-    const totalPrice = (
-        parseFloat(selectedSize.dataset.price) +
-        parseFloat(selectedFlavour.dataset.price) +
-        parseFloat(selectedCrust.dataset.price) +
-        toppingTotal
-    ) * quantity;
+            const quantity = parseInt(quantityInput.value, 10);
 
-    // Send data to the server using AJAX
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "addToCart.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            // Send data to the server using AJAX
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "addToCart.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    const userId = <?php echo json_encode($_SESSION['id']); ?>; // Ensure it's safe
-    const productId = <?php echo json_encode($product_id); ?>; // Ensure it's safe
+            const userId = <?php echo $_SESSION['id']; ?>;
+            const productId = <?php echo $product_id; ?>;
 
-    const params = `user_id=${userId}&product_id=${productId}&size=${selectedSize.value}&flavour=${selectedFlavour.value}&crust=${selectedCrust.value}&toppings=${encodeURIComponent(selectedToppings.join(','))}&quantity=${quantity}&total_price=${totalPrice.toFixed(2)}`;
+            const params = `user_id=${userId}&product_id=${productId}&size=${selectedSize.value}&flavour=${selectedFlavour.value}&crust=${selectedCrust.value}&toppings=${encodeURIComponent(selectedToppings.join(','))}&quantity=${quantity}`;
 
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            alert("Product added to cart successfully!");
-        } else {
-            alert("Error adding product to cart.");
-        }
-    };
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Optional: Handle a successful response
+                    alert("Product added to cart successfully!");
+                    // You can also update the cart UI here if needed
+                } else {
+                    alert("Error adding product to cart.");
+                }
+            };
 
-    xhr.send(params);
-});
+            xhr.send(params);
+        });
 
     </script>
-    <!-- <script>
-    document.getElementById('addToCartButton').addEventListener('click', function (event) {
-    event.preventDefault(); // Prevent the default link behavior
-
-    const sizeSelect = document.getElementById('size-select');
-    const flavourSelect = document.getElementById('flavour-select');
-    const crustSelect = document.getElementById('crust-select');
-    const toppingCheckboxes = document.querySelectorAll('.topping-checkbox');
-    const quantityInput = document.getElementById("input-item-quantity");
-
-    // Get selected values
-    const selectedSize = sizeSelect.options[sizeSelect.selectedIndex];
-    const selectedFlavour = flavourSelect.options[flavourSelect.selectedIndex];
-    const selectedCrust = crustSelect.options[crustSelect.selectedIndex];
-    const selectedToppings = [];
-    let toppingTotal = 0;
-
-    toppingCheckboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-            const toppingName = checkbox.parentNode.textContent.trim().split(" - ")[0];
-            selectedToppings.push(toppingName);
-            toppingTotal += parseFloat(checkbox.dataset.price);
-        }
-    });
-
-    const quantity = parseInt(quantityInput.value, 10);
-
-    // Send data to the server using AJAX
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "addToCart.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-    const userId = <?php echo $_SESSION['id']; ?>;
-    const productId = <?php echo $product_id; ?>;
-
-    const params = `user_id=${userId}&product_id=${productId}&size=${selectedSize.value}&flavour=${selectedFlavour.value}&crust=${selectedCrust.value}&toppings=${encodeURIComponent(selectedToppings.join(','))}&quantity=${quantity}`;
-
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            // Optional: Handle a successful response
-            alert("Product added to cart successfully!");
-            // You can also update the cart UI here if needed
-        } else {
-            alert("Error adding product to cart.");
-        }
-    };
-
-    xhr.send(params);
-});
-
-    </script> -->
 
 
 

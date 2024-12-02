@@ -2,61 +2,37 @@
 session_start();
 include 'includes/connect.php';
 
-if (isset($_POST['user_id'], $_POST['product_id'], $_POST['size'], $_POST['flavour'], $_POST['crust'], $_POST['toppings'], $_POST['quantity'])) {
-    // Retrieve the data from POST request
-    $user_id = $_POST['user_id'];
-    $product_id = $_POST['product_id'];
-    $size = $_POST['size'];
-    $flavour = $_POST['flavour'];
-    $crust = $_POST['crust'];
-    $toppings = $_POST['toppings']; // Comma-separated list of toppings
-    $quantity = $_POST['quantity'];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST['user_id'], $_POST['product_id'], $_POST['size'], $_POST['flavour'], $_POST['crust'], $_POST['toppings'], $_POST['quantity'], $_POST['total_price'])) {
+        // Sanitize inputs
+        $user_id = mysqli_real_escape_string($con, $_POST['user_id']);
+        $product_id = mysqli_real_escape_string($con, $_POST['product_id']);
+        $size = mysqli_real_escape_string($con, $_POST['size']);
+        $flavour = mysqli_real_escape_string($con, $_POST['flavour']);
+        $crust = mysqli_real_escape_string($con, $_POST['crust']);
+        $toppings = mysqli_real_escape_string($con, $_POST['toppings']);
+        $quantity = (int)$_POST['quantity'];
+        $total_price = (float)$_POST['total_price'];
 
-    // Prepare SQL to insert the data into the cart table
-    $sql = "INSERT INTO `cart` (`user_id`, `product_id`, `size`, `flavour`, `crust`, `toppings`, `quantity`) 
-            VALUES ('$user_id', '$product_id', '$size', '$flavour', '$crust', '$toppings', '$quantity')";
+        // Prepare SQL
+        $sql = "INSERT INTO `cart` (`user_id`, `product_id`, `size`, `flavour`, `crust`, `toppings`, `quantity`, `cart_price`) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($con, $sql);
+        mysqli_stmt_bind_param($stmt, 'ssssssid', $user_id, $product_id, $size, $flavour, $crust, $toppings, $quantity, $total_price);
 
-    if (mysqli_query($con, $sql)) {
-        // Successfully added to cart
-        echo 'Product added to cart successfully!';
+        if (mysqli_stmt_execute($stmt)) {
+            echo 'Product added to cart successfully!';
+        } else {
+            echo 'Error adding product to cart: ' . mysqli_error($con);
+        }
+
+        mysqli_stmt_close($stmt);
     } else {
-        // Error occurred
-        echo 'Error adding product to cart: ' . mysqli_error($con);
+        echo 'Required data missing';
     }
 } else {
-    // Missing parameters
-    echo 'Required data missing';
+    echo 'Invalid request method';
 }
 
-mysqli_close($con); // Close the database connection
+mysqli_close($con);
 ?>
-
-
-<?php
-// session_start();
-// include 'includes/connect.php';
-// // Ensure the session ID exists
-// if (!isset($_SESSION['id'])) {
-//     // Handle case if user is not logged in
-//     exit('User is not logged in');
-// }
-
-// $user_id = $_SESSION['id']; // Get the user ID
-// $product_id = $_POST['product_id']; // Get the product ID
-// $size = $_POST['size'];
-// $flavour = $_POST['flavour'];
-// $crust = $_POST['crust'];
-// $toppings = $_POST['toppings'];
-// $quantity = $_POST['quantity'];
-
-// // Insert into database logic (add product to cart)
-// $sql = "INSERT INTO cart (user_id, product_id, size, flavour, crust, toppings, quantity) VALUES ('$user_id', '$product_id', '$size', '$flavour', '$crust', '$toppings', '$quantity')";
-
-// // Execute the query
-// if (mysqli_query($con, $sql)) {
-//     echo "Product added to cart successfully!";
-// } else {
-//     echo "Error adding product to cart.";
-// }
-?>
-

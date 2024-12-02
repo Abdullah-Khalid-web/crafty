@@ -3,15 +3,10 @@ include 'includes/connect.php';
 ?>
 
 <?php
-session_start(); // Start the session to access session variables
-
-// Check if session variables exist
+session_start(); 
 if (isset($_SESSION['fname']) && isset($_SESSION['lname'])) {
   $fname = $_SESSION['fname'];
   $lname = $_SESSION['lname'];
-  // Display the user information
-} else {
-
 }
 ?>
 
@@ -23,7 +18,7 @@ if (isset($_SESSION['fname']) && isset($_SESSION['lname'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crafty Crusts</title>
-  <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+  <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@400;500;600;700&display=swap"
@@ -32,8 +27,8 @@ if (isset($_SESSION['fname']) && isset($_SESSION['lname'])) {
 
   <!-- BootStrap Link  -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -54,6 +49,19 @@ if (isset($_SESSION['fname']) && isset($_SESSION['lname'])) {
     :root {
       --primary-color: rgba(255, 84, 5, 1);
       --secondary-color: #1a5f6b;
+    }
+    .h1{
+      margin: auto;
+      text-align: center;
+    }
+
+    
+    .bg-pri {
+        background-color: orange;
+    }
+    .text-pri{
+        color: var(--primary-color);
+
     }
 
     body {
@@ -320,7 +328,7 @@ if (isset($_SESSION['fname']) && isset($_SESSION['lname'])) {
     }
 
     .boxes .box {
-      width: 300px;
+      width: 220px;
       padding: 12px;
       margin: 5px;
       border: 1px solid #ccc;
@@ -516,11 +524,13 @@ if (isset($_SESSION['fname']) && isset($_SESSION['lname'])) {
 
 
     .Customize-Main {
+      width: 100%;
       padding: 50px;
       margin-top: 25px;
     }
 
     #pizza-builder {
+      width: 100%;
       display: flex;
       justify-content: space-between;
     }
@@ -618,78 +628,80 @@ if (isset($_SESSION['fname']) && isset($_SESSION['lname'])) {
 
 
     /* General Styles for Topping Section */
-.size-section {
-  margin: 20px 0;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  text-align: center;
-}
+    .size-section {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
 
-.size-section h4 {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 15px;
-}
+    .size-section h4 {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 15px;
+    }
 
-/* Styles for Topping List */
-.size-section {
-  margin: 20px 0;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  text-align: center;
-}
+    /* Styles for Topping List */
+    .size-section {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
 
-.size-section h4 {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 15px;
-}
+    .size-section h4 {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 15px;
+    }
 
-/* Styles for Topping List */
-.size-section ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px; 
-}
+    /* Styles for Topping List */
+    .size-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-.size-section li {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: 14px;
-  color: black;
-  padding: 5px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease;
-}
+    .size-section li {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      font-size: 14px;
+      color: black;
+      padding: 5px;
+      border-radius: 4px;
+      transition: background-color 0.2s ease;
+    }
 
-.size-section li:hover {
-  color: black;
-  background-color: #f0f0f0;
-}
+    .size-section li:hover {
+      color: black;
+      background-color: #f0f0f0;
+    }
 
-.size-section label {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px; /* Space between checkbox and text */
-}
-.size-section label input{
-  
-}
-.topping-checkbox {
-  color: black;
-  transform: scale(1.2); /* Slightly enlarge the checkbox */
-}
+    .size-section label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      /* Space between checkbox and text */
+    }
+
+    .size-section label input {}
+
+    .topping-checkbox {
+      color: black;
+      transform: scale(1.2);
+      /* Slightly enlarge the checkbox */
+    }
 
 
 
@@ -907,64 +919,88 @@ if (isset($_SESSION['fname']) && isset($_SESSION['lname'])) {
 
     /* Order Popup */
     .popup {
-    height: auto; /* Allows content to dictate height */
-    max-height: 90vh; /* Limits height for better usability */
-    background-color: var(--primary-color); /* Overlay color for focus */
-    width: 90%; /* Full width on small screens */
-    max-width: 600px; /* Limit the width on larger screens */
-    position: fixed; /* Fixed positioning for modal behavior */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%);
-    display: none; /* Hidden by default */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Ensure it appears above other elements */
-    padding: 3px;
-    border-radius: 10px;
-    box-shadow: 0 4px 25px var(--primary-color); /* Add subtle shadow */
-    overflow: hidden; /* Prevent overflow issues */
-}
+      height: auto;
+      /* Allows content to dictate height */
+      max-height: 90vh;
+      /* Limits height for better usability */
+      background-color: var(--primary-color);
+      /* Overlay color for focus */
+      width: 90%;
+      /* Full width on small screens */
+      max-width: 600px;
+      /* Limit the width on larger screens */
+      position: fixed;
+      /* Fixed positioning for modal behavior */
+      top: 50%;
+      /* Center vertically */
+      left: 50%;
+      /* Center horizontally */
+      transform: translate(-50%, -50%);
+      display: none;
+      /* Hidden by default */
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      /* Ensure it appears above other elements */
+      padding: 3px;
+      border-radius: 10px;
+      box-shadow: 0 4px 25px var(--primary-color);
+      /* Add subtle shadow */
+      overflow: hidden;
+      /* Prevent overflow issues */
+    }
 
-.popup-content {
-    background-color: #fff; /* White background for content */
-    padding: 20px;
-    border-radius: 10px;
-    position: relative;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for content */
-    width: 100%; /* Ensure it fits within the popup */
-    max-height: 85vh; /* Allow scrolling for overflow content */
-    overflow-y: auto; /* Add vertical scrolling for long content */
-}
+    .popup-content {
+      background-color: #fff;
+      /* White background for content */
+      padding: 20px;
+      border-radius: 10px;
+      position: relative;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      /* Subtle shadow for content */
+      width: 100%;
+      /* Ensure it fits within the popup */
+      max-height: 85vh;
+      /* Allow scrolling for overflow content */
+      overflow-y: auto;
+      /* Add vertical scrolling for long content */
+    }
 
-.close-img {
-    position: absolute;
-    top: 10px; /* Adjusted for better spacing */
-    right: 10px;
-    cursor: pointer;
-    background-color: var(--primary-color);
-    border-radius: 50%; /* Make it a circle */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Shadow for button */
-    width: 30px;
-    height: 30px; /* Ensures it remains circular */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth interactions */
-}
+    .close-img {
+      position: absolute;
+      top: 10px;
+      /* Adjusted for better spacing */
+      right: 10px;
+      cursor: pointer;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+      /* Make it a circle */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      /* Shadow for button */
+      width: 30px;
+      height: 30px;
+      /* Ensures it remains circular */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      /* Smooth interactions */
+    }
 
-.close-img:hover {
-    background-color: var(--primary-hover-color); /* Slightly lighter/darker shade on hover */
-    transform: scale(1.1); /* Subtle zoom effect on hover */
-}
+    .close-img:hover {
+      background-color: var(--primary-hover-color);
+      /* Slightly lighter/darker shade on hover */
+      transform: scale(1.1);
+      /* Subtle zoom effect on hover */
+    }
 
-.close-img img {
-    width: 60%; /* Size of the close icon inside */
-    height: auto;
-    pointer-events: none; /* Prevent accidental clicks on the image itself */
-}
-
-
+    .close-img img {
+      width: 60%;
+      /* Size of the close icon inside */
+      height: auto;
+      pointer-events: none;
+      /* Prevent accidental clicks on the image itself */
+    }
   </style>
 </head>
 
@@ -986,9 +1022,9 @@ if (isset($_SESSION['fname']) && isset($_SESSION['lname'])) {
           <li class="nav-item"><a href="contactus.php" class="nav-link">ContactUs</a></li>
 
           <?php
-           if (isset($_SESSION['fname']) && isset($_SESSION['lname'])): ?>
+          if (isset($_SESSION['fname']) && isset($_SESSION['lname'])): ?>
             <li class="nav-item">
-              <?php echo  '<li class="nav-item"><a href="user_profile.php" class="nav-link"> '.$_SESSION["fname"] . ' ' . $_SESSION["lname"].' </a></li>' ; ?>
+              <?php echo '<li class="nav-item"><a href="user_profile.php" class="nav-link"> ' . $_SESSION["fname"] . ' ' . $_SESSION["lname"] . ' </a></li>'; ?>
             </li>
             <li class="nav-item">
               <a href="cart.php" class="nav-link bx"><span>ShoppingCart</span></a>
@@ -996,11 +1032,6 @@ if (isset($_SESSION['fname']) && isset($_SESSION['lname'])) {
             <li class="nav-item">
               <a href="logout.php" class="nav-link bx"><span>logout</span></a>
             </li>
-            <!-- <li>
-              <form action="logout.php" method="post" style="display: inline;">
-                <input type="submit" class="nav-link bx" value="Logout">
-              </form>
-            </li> -->
           <?php else: ?>
             <?php  //echo $_SESSION["fname"] . ' ' . $_SESSION["lname"]; ?>
             <li class="nav-item">
